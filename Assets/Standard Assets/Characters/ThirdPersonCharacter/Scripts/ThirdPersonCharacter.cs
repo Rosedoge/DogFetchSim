@@ -165,7 +165,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             DogScript.dog.SetBallTarget(throwable);
             throwable.transform.parent = null;
             throwable.GetComponent<MeshCollider>().isTrigger = false;
-            throwable.GetComponent<Rigidbody>().AddForce((transform.forward + transform.up) * m_ThrowForce * m_ThrowForceMax);
+
+            throwable.GetComponent<Rigidbody>().AddForce((transform.forward + transform.up) * (m_ThrowForce * m_ThrowForceMax));
             throwable = null;
             m_ThrowForce = 0f;
         }
@@ -294,7 +295,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
                 }
             }
-            if (myThrowing)
+            if (myThrowing && throwable != null)
             {
                 m_ThrowForce += Time.deltaTime;
                
